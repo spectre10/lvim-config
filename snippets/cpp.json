@@ -174,7 +174,7 @@
         ],
         "description": "prime factors using sieve"
     },
-    "spf":{
+    "spf": {
         "prefix": "spf",
         "body": [
             "// ",
@@ -204,5 +204,45 @@
             "}"
         ],
         "description": "smallest prime factor using sieve"
+    },
+    "dsu": {
+        "prefix": "dsu",
+        "body": [
+            "class dsu {",
+            "    vector<int> arr;",
+            "",
+            "public:",
+            "    dsu(int n)",
+            "    {",
+            "        arr = vector<int>(n + 1, -1);",
+            "    }",
+            "    int find(int x)",
+            "    {",
+            "        if (arr[x] < 0)",
+            "            return x;",
+            "        return find(arr[x]);",
+            "    }",
+            "    void uni(int a, int b)",
+            "    {",
+            "        int x = find(a);",
+            "        int y = find(b);",
+            "        if (x == y) {",
+            "            return;",
+            "        }",
+            "        arr[x] += arr[y];",
+            "        arr[y] = x;",
+            "    }",
+            "    int getparents()",
+            "    {",
+            "        int ans = 0;",
+            "        for (int i = 1; i < arr.size(); i++) {",
+            "            if (arr[i] < 0)",
+            "                ans++;",
+            "        }",
+            "        return ans;",
+            "    }",
+            "};"
+        ],
+        "description": "Disjoint set union for cycles"
     }
 }
